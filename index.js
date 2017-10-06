@@ -43,6 +43,14 @@ app.get('/:post/comments/:commentId', (req, res) => {
     })
 })
 
+//create comment
+app.post('/:postId/createComment'), (req, res) => {
+    Comment.create({req.postID})
+    .then((comment) => {
+        res.json(comment)
+    })
+}
+
 
 app.listen(4000, () => {
     console.log('app listening on port 4000')
