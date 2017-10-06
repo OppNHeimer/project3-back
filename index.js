@@ -6,13 +6,15 @@ const cors = require('cors')
 const app = express()
 
 const Post = mongoose.model('Post')
+const Comment = mongoose.model('Comment')
 
 app.use(parser.json())
 app.use(cors())
 
 //index posts
 app.get('/', (req, res) => {
-    Post.find({}).then((posts) => {
+    Post.find({})
+    .then((posts) => {
         res.json(posts)
     })
 })
@@ -25,9 +27,12 @@ app.get('/:postId', (req, res) => {
     })
 })
 
-//index comments
-app.get('/:post/comments', (req, res) => {
-    res.send(`comments of ${req.params.post}`)
+//index post's comments
+app.get('/:postId/comments', (req, res) => {
+    Comment.find({post: req.params.postId})
+    .then((comments) => {
+        res.json(comments)
+    })
 })
 
 //show comment
