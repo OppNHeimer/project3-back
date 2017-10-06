@@ -20,7 +20,10 @@ const PostSchema = new Schema({
     title: String,
     content: String,
     tags: Array,
-    comments: { type: Schema.ObjectId, ref: 'Comment'},
+    comments: { 
+        type: Schema.ObjectId, 
+        ref: 'Comment'
+    },
 },
 {
     timestamps: true
