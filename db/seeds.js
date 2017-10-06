@@ -2,51 +2,52 @@ const mongoose = require('./connection')
 var Post = mongoose.model('Post')
 var Comment = mongoose.model('Comment')
 
-
-
-    sallyComment = new Comment({
-    name: 'sallyp',
-    content: 'I agree with Moe, Joe sucks.'
-})
-jayComment = new Comment({
-    name: 'Jay',
-    content: 'Sally, Joe isnt that bad he only kinda sucks'
-})
-joeComment = new Comment({
-    name: 'joeshmo',
-    content: 'nah guys moes the worst'
-})
-commentSeeds = [sallyComment, jayComment, joeComment]
-
 joePost = new Post({
     name: 'joeshmo',
     title: 'My First Post',
     content: 'Writing a post is so much fun',
     tags: ['post', 'fun', 'joe'],
-    comments: [jayComment._id]
+
 })
 moePost = new Post({
     name: 'moeshmo',
     title: 'My Post is better than Joes',
     content: 'Joe sucks I am so much better.',
     tags: ['post', 'better', 'moe'],
-    comments: [sallyComment._id]
+
 })
 woahPost = new Post({
     name: 'woahshmo',
     title: 'Chill guys',
     content: 'Joe and Moe, guys its nbd',
     tags: ['post', 'chill', 'woah'],
-    comments: [joeComment._id]
 })
+
+sallyComment = new Comment({
+    name: 'sallyp',
+    content: 'I agree with Moe, Joe sucks.',
+    post: moePost._id
+})
+jayComment = new Comment({
+    name: 'Jay',
+    content: 'Sally, Joe isnt that bad he only kinda sucks',
+    post: woahPost._id
+})
+joeComment = new Comment({
+    name: 'joeshmo',
+    content: 'nah guys moes the worst',
+    post: woahPost._id
+})
+
+commentSeeds = [sallyComment, jayComment, joeComment]
 
 postSeeds = [joePost, moePost, woahPost]
 
-Comment.remove({}).then(() => {
-    Comment.collection.insert(commentSeeds)
+Post.remove({}).then(() => {
+    Post.collection.insert(postSeeds)
     }).then(() => {
-        Post.remove({}).then(() => {
-            Post.collection.insert(postSeeds)
+        Comment.remove({}).then(() => {
+            Comment.collection.insert(commentSeeds)
         }).then(() => process.exit())
     })
 

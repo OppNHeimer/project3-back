@@ -20,10 +20,6 @@ const PostSchema = new Schema({
     title: String,
     content: String,
     tags: Array,
-    comments: { 
-        type: Schema.ObjectId, 
-        ref: 'Comment'
-    },
 },
 {
     timestamps: true
@@ -33,6 +29,10 @@ const PostSchema = new Schema({
 const CommentSchema = new Schema({
     name: String,
     content: String,
+    post: {
+        type: Schema.ObjectId,
+        ref: 'Post'
+    },
 },
 {
     timestamps: true

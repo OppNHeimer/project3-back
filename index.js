@@ -1,15 +1,20 @@
 const express = require('express')
 const parser = require('body-parser')
+let mongoose = require('./db/connection.js')
 // const mongoose = require('./db/connections.js')
 const cors = require('cors')
 const app = express()
+
+const Post = mongoose.model('Post')
 
 app.use(parser.json())
 app.use(cors())
 
 //index posts
 app.get('/', (req, res) => {
-    res.send('index post')
+    Post.find({}).then((posts) => {
+        res.json(posts)
+    })
 })
 
 //show post
