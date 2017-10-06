@@ -53,7 +53,7 @@ app.get('/:post/comments/:commentId', (req, res) => {
 
 //create comment
 app.post('/:postId/createComment'), (req, res) => {
-    Comment.create({req.postID})
+    Comment.create(req.body)
     .then((comment) => {
         res.json(comment)
     })
