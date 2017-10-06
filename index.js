@@ -11,19 +11,19 @@ const Comment = mongoose.model('Comment')
 app.use(parser.json())
 app.use(cors())
 
+//create comment
+app.post('/createComment', (req, res) => {
+    Comment.create(req.body)
+        .then((comment) => {
+            res.json(comment)
+        })
+})
+
 //index posts
 app.get('/', (req, res) => {
     Post.find({})
     .then((posts) => {
         res.json(posts)
-    })
-})
-
-//show post
-app.get('/:postId', (req, res) => {
-    Post.findOne({_id: req.params.postId})
-    .then((post) => {
-        res.json(post)
     })
 })
 
@@ -34,6 +34,16 @@ app.post('/postCreate', (req, res) => {
         res.json(post)
     })
 })
+
+
+//show post
+app.get('/:postId', (req, res) => {
+    Post.findOne({_id: req.params.postId})
+    .then((post) => {
+        res.json(post)
+    })
+})
+
 
 //index post's comments
 app.get('/:postId/comments', (req, res) => {
@@ -50,14 +60,6 @@ app.get('/:post/comments/:commentId', (req, res) => {
         res.json(comment)
     })
 })
-
-//create comment
-app.post('/createComment'), (req, res) => {
-    Comment.create(req.body)
-    .then((comment) => {
-        res.json(comment)
-    })
-}
 
 
 app.listen(4000, () => {
