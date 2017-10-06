@@ -5,69 +5,70 @@ var Comment = mongoose.model('Comment')
 Comment.remove({}).then(() => process.exit())
 Post.remove({}).then(() => process.exit())
 
-joePost = {
+joePost = new Post({
     name: 'joeshmo',
     title: 'My First Post',
     content: 'Writing a post is so much fun',
     tags: ['post', 'fun', 'joe'],
     comments: []
-}
-moePost = {
+})
+moePost = new Post({
     name: 'moeshmo',
     title: 'My Post is better than Joes',
     content: 'Joe sucks I am so much better.',
     tags: ['post', 'better', 'moe'],
-    comments: []
-}
-woahPost = {
+    comments: ['']
+})
+woahPost = new Post({
     name: 'woahshmo',
     title: 'Chill guys',
     content: 'Joe and Moe, guys its nbd',
     tags: ['post', 'chill', 'woah'],
-    comments: []
-}
+    comments: ['']
+})
 
 
-sallyComment = {
+sallyComment = new Comment({
     name: 'sallyp',
     content: 'I agree with Moe, Joe sucks.'
-}
-jayComment = {
+})
+jayComment = new Comment({
     name: 'Jay',
     content: 'Sally, Joe isnt that bad he only kinda sucks'
-}
-joeComment = {
+})
+joeComment = new Comment({
     name: 'joeshmo',
     content: 'nah guys moes the worst'
-}
+})
 
-joePost.comments.push(sallyComment, jayComment)
-moePost.comments.push(joeComment)
+console.log(joePost.comments)
+// joePost.comments.push(jayComment)
+// moePost.comments.push(joeComment)
 
-joePost.save((err, post) => {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        console.log(post);
-    }
-})
-moePost.save((err, post) => {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        console.log(post);
-    }
-})
-woahPost.save((err, post) => {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        console.log(post);
-    }
-})
+// joePost.save((err, post) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     else {
+//         console.log(post);
+//     }
+// })
+// moePost.save((err, post) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     else {
+//         console.log(post);
+//     }
+// })
+// woahPost.save((err, post) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     else {
+//         console.log(post);
+//     }
+// })
 
 
 

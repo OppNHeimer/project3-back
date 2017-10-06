@@ -15,7 +15,7 @@ var ObjectId = Schema.ObjectId
 //     children: ["Comments"]
 // })
 
-const PostSchema = new mongoose.Schema({
+const PostSchema = new Schema({
     name: String,
     title: String,
     content: String,
@@ -27,7 +27,7 @@ const PostSchema = new mongoose.Schema({
 }
 )
 
-const CommentSchema = new mongoose.Schema({
+const CommentSchema = new Schema({
     name: String,
     content: String,
 },
@@ -39,6 +39,6 @@ const CommentSchema = new mongoose.Schema({
 
 mongoose.connect('mongodb://localhost/project3-back')
 var Post = mongoose.model('Post', PostSchema)
-var Comment = mongoose.model('Comment', PostSchema)
+var Comment = mongoose.model('Comment', CommentSchema)
 
 module.exports = mongoose
