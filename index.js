@@ -18,8 +18,11 @@ app.get('/', (req, res) => {
 })
 
 //show post
-app.get('/:post', (req, res) => {
-    res.send(`show ${req.params.post}`)
+app.get('/:postId', (req, res) => {
+    Post.findOne({_id: req.params.postId})
+    .then((post) => {
+        res.json(post)
+    })
 })
 
 //index comments
