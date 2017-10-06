@@ -27,6 +27,14 @@ app.get('/:postId', (req, res) => {
     })
 })
 
+//create new post
+app.post('/postCreate', (req, res) => {
+    Post.create(req.body)
+    .then((post) => {
+        res.json(post)
+    })
+})
+
 //index post's comments
 app.get('/:postId/comments', (req, res) => {
     Comment.find({post: req.params.postId})
