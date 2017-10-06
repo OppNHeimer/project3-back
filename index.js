@@ -35,9 +35,12 @@ app.get('/:postId/comments', (req, res) => {
     })
 })
 
-//show comment
-app.get('/:post/comments/:comment', (req, res) => {
-    res.send(`comment: ${req.params.comment} of post: ${req.params.post}`)
+//show single comment
+app.get('/:post/comments/:commentId', (req, res) => {
+    Comment.find({_id: req.params.commentId})
+    .then((comment) => {
+        res.json(comment)
+    })
 })
 
 
