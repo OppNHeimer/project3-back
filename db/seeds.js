@@ -1,6 +1,7 @@
 const mongoose = require('./connection')
 var Post = mongoose.model('Post')
 var Comment = mongoose.model('Comment')
+var Tag = mongoose.model('Tag')
 
 joePost = new Post({
     name: 'joeshmo',
@@ -38,18 +39,32 @@ joeComment = new Comment({
     content: 'nah guys moes the worst',
     post: woahPost._id
 })
+jayTag = new Tag({
+    name: 'Test',
+    post: woahPost._id
+})
+testTag = new Tag({
+    name: 'Dio',
+    post: moePost._id
+})
 
 commentSeeds = [sallyComment, jayComment, joeComment]
 
 postSeeds = [joePost, moePost, woahPost]
+
+tagSeeds = [jayTag,testTag]
 
 Post.remove({}).then(() => {
     Post.collection.insert(postSeeds)
     }).then(() => {
         Comment.remove({}).then(() => {
             Comment.collection.insert(commentSeeds)
-        }).then(() => process.exit())
-    })
+        })
+          }).then(() => {
+            Tag.remove({}).then(() => {
+              Tag.collection.insert(tagSeeds)
+            })
+          }).then(() => {process.exit()})
 
 
 

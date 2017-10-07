@@ -39,9 +39,22 @@ const CommentSchema = new Schema({
 }
 )
 
+const TagSchema = new Schema({
+    name: String,
+    post: {
+        type: Schema.ObjectId,
+        ref: 'Post'
+    },
+},
+{
+    timestamps: true
+}
+)
+
 
 mongoose.connect('mongodb://localhost/project3-back')
 var Post = mongoose.model('Post', PostSchema)
 var Comment = mongoose.model('Comment', CommentSchema)
+var Tag = mongoose.model('Tag', TagSchema)
 
 module.exports = mongoose

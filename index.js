@@ -7,6 +7,7 @@ const app = express()
 
 const Post = mongoose.model('Post')
 const Comment = mongoose.model('Comment')
+const Tag = mongoose.model('Tag')
 
 app.use(parser.json())
 app.use(cors())
@@ -58,6 +59,22 @@ app.get('/:post/comments/:commentId', (req, res) => {
     Comment.find({_id: req.params.commentId})
     .then((comment) => {
         res.json(comment)
+    })
+})
+
+//create new tag
+app.post('/createtag', (req, res) => {
+    Tag.create(req.body)
+        .then((tag) => {
+            res.json(tag)
+        })
+})
+
+//index post's tags
+app.get('/:postId/tags', (req, res) => {
+    Tag.find({post: req.params.postId})
+    .then((tags) => {
+        res.json(tags)
     })
 })
 
