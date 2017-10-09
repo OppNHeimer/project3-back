@@ -45,6 +45,14 @@ app.get('/:postId', (req, res) => {
     })
 })
 
+//edit post
+app.post('/:postId/updatePost', function(req,res){
+  Post.findOneAndUpdate({_id: req.params.postId},req.body,{new: true})
+      .then((post) => {
+          res.json(post);
+  })
+})
+
 
 //index post's comments
 app.get('/:postId/comments', (req, res) => {
