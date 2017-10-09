@@ -53,6 +53,12 @@ app.post('/:postId/updatePost', function(req,res){
   })
 })
 
+//delete post
+app.post('/:postId/deletePost', function(req, res){
+  Post.findOneAndRemove({_id: req.params.postId}, function(){
+    res.json("/")
+  })
+})
 
 //index post's comments
 app.get('/:postId/comments', (req, res) => {
