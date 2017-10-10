@@ -51,14 +51,14 @@ const TagSchema = new Schema({
 }
 )
 
-let uri = 'mongodb://aha:project3@ds041526.mlab.com:41526/aha'
+// let uri = 'mongodb://aha:project3@ds041526.mlab.com:41526/aha'
 
-mongoose.connect(uri, function(err, db) {
-    if(err) {
-        console.log('Error, unable to connect to db')
-        return
-    }
-})
+// mongoose.connect(uri, function(err, db) {
+//     if(err) {
+//         console.log('Error, unable to connect to db')
+//         return
+//     }
+// })
 
 if (process.env.NODE_ENV == "production") {
     mongoose.connect(process.env.MLAB_URL)
