@@ -60,8 +60,12 @@ mongoose.connect(uri, function(err, db) {
     }
 })
 
+if (process.env.NODE_ENV == "production") {
+    mongoose.connect(process.env.MLAB_URL)
+} else {
+    mongoose.connect("mongodb://localhost/project3-back")
+}
 
-// mongoose.connect('mongodb://localhost/project3-back')
 var Post = mongoose.model('Post', PostSchema)
 var Comment = mongoose.model('Comment', CommentSchema)
 var Tag = mongoose.model('Tag', TagSchema)
