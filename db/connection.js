@@ -51,8 +51,17 @@ const TagSchema = new Schema({
 }
 )
 
+let uri = 'mongodb://aha:project3@ds041526.mlab.com:41526/aha'
 
-mongoose.connect('mongodb://localhost/project3-back')
+mongoose.connect(uri, function(err, db) {
+    if(err) {
+        console.log('Error, unable to connect to db')
+        return
+    }
+})
+
+
+// mongoose.connect('mongodb://localhost/project3-back')
 var Post = mongoose.model('Post', PostSchema)
 var Comment = mongoose.model('Comment', CommentSchema)
 var Tag = mongoose.model('Tag', TagSchema)

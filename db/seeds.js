@@ -5,7 +5,7 @@ var Tag = mongoose.model('Tag')
 
 joePost = new Post({
     name: 'joeshmo',
-    title: 'My First Post',
+    title: 'My good Post',
     content: 'Writing a post is so much fun',
     tags: ['post', 'fun', 'joe'],
 
@@ -25,7 +25,7 @@ woahPost = new Post({
 })
 
 sallyComment = new Comment({
-    name: 'sallyp',
+    name: 'sallyS',
     content: 'I agree with Moe, Joe sucks.',
     post: moePost._id
 })
@@ -44,7 +44,7 @@ jayTag = new Tag({
     post: woahPost._id
 })
 testTag = new Tag({
-    name: 'Dio',
+    name: 'Dia',
     post: moePost._id
 })
 
@@ -52,19 +52,25 @@ commentSeeds = [sallyComment, jayComment, joeComment]
 
 postSeeds = [joePost, moePost, woahPost]
 
-tagSeeds = [jayTag,testTag]
+tagSeeds = [jayTag, testTag]
 
-Post.remove({}).then(() => {
+Post.remove({})
+.then(() => {
     Post.collection.insert(postSeeds)
-    }).then(() => {
-        Comment.remove({}).then(() => {
-            Comment.collection.insert(commentSeeds)
-        })
-          }).then(() => {
-            Tag.remove({}).then(() => {
-              Tag.collection.insert(tagSeeds)
-            })
-          }).then(() => {process.exit()})
+})
+
+Comment.remove({})
+.then(() => {
+    Comment.collection.insert(commentSeeds)
+})
+
+Tag.remove({})
+.then(() => {
+    Tag.collection.insert(tagSeeds)
+    .then(() => {
+            process.exit()
+    })
+})
 
 
 
