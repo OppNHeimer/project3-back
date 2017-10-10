@@ -92,7 +92,10 @@ app.get('/:postId/tags', (req, res) => {
     })
 })
 
-
-app.listen(4000, () => {
+app.listen(process.env.PORT || 4000, () => {
     console.log('app listening on port 4000')
 })
+// )
+// app.listen(4000, () => {
+//     console.log('app listening on port 4000')
+// })
