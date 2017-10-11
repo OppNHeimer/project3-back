@@ -11,6 +11,53 @@ const Tag = mongoose.model('Tag')
 
 app.use(parser.json())
 app.use(cors());
+// // user authentication using github
+//
+// var passport = require('passport');
+// var GitHubStrategy = require('passport-github').Strategy;
+// app.use(passport.initialize());
+// app.use(passport.session());
+//
+// passport.use(new GitHubStrategy({
+//     clientID: 4db128319f14cf08ada9,
+//     clientSecret: 5e2fee45926fda54a26f14544a0da4df42bdddf8,
+//     callbackURL: "http://127.0.0.1:3000/auth/github/callback"
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//      return done(null, profile);
+//    }
+//  ));
+//
+// app.get('/auth/github',
+//   passport.authenticate('github'));
+//
+// app.get('/auth/github/callback',
+//   passport.authenticate('github', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/');
+//   });
+//
+//   app.get('/login',
+//   function(req, res){
+//     res.render('login');
+//   });
+//
+// app.get('/login/github',
+//   passport.authenticate('github'));
+//
+// app.get('/login/github/return',
+//   passport.authenticate('github', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     res.redirect('/');
+//   });
+//
+// app.get('/profile',
+//   require('connect-ensure-login').ensureLoggedIn(),
+//   function(req, res){
+//     res.render('profile', { user: req.user });
+//   });
+//   // end of user authentication
 
 //create comment
 app.post('/createComment', (req, res) => {
@@ -99,7 +146,6 @@ app.get('/:postId/tags', (req, res) => {
     })
 })
 
-//search tags
 app.get('/tags/:searchTag', (req, res) => {
   Tag.find({name: req.params.searchTag})
   .then((tags) => {
