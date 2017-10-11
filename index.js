@@ -10,7 +10,8 @@ const Comment = mongoose.model('Comment')
 const Tag = mongoose.model('Tag')
 
 app.use(parser.json())
-app.use(cors())
+app.use(cors());
+
 
 //create comment
 app.post('/createComment', (req, res) => {
@@ -25,6 +26,13 @@ app.get('/', (req, res) => {
     Post.find({})
     .then((posts) => {
         res.json(posts)
+    })
+})
+// index tags
+app.get('/tags', (req, res) => {
+    Tag.find({})
+    .then((tags) => {
+        res.json(tags)
     })
 })
 
@@ -90,6 +98,13 @@ app.get('/:postId/tags', (req, res) => {
     .then((tags) => {
         res.json(tags)
     })
+})
+
+app.get('/tags/:searchTag', (req, res) => {
+  Tag.find({name: req.params.searchTag})
+  .then((tags) => {
+      res.json(tags)
+  })
 })
 
 
