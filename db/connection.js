@@ -51,7 +51,8 @@ const TagSchema = new Schema({
 }
 )
 
-let uri = 'mongodb://aha:project3@ds041526.mlab.com:41526/aha'
+// let uri = 'mongodb://aha:project3@ds041526.mlab.com:41526/aha'
+let uri = 'mongodb://localhost/aha'
 
 mongoose.connect(uri, function(err, db) {
     if(err) {
