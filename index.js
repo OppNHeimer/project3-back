@@ -74,6 +74,13 @@ app.get('/', (req, res) => {
         res.json(posts)
     })
 })
+// index tags
+app.get('/tags', (req, res) => {
+    Tag.find({})
+    .then((tags) => {
+        res.json(tags)
+    })
+})
 
 //create new post
 app.post('/postCreate', (req, res) => {
@@ -137,6 +144,13 @@ app.get('/:postId/tags', (req, res) => {
     .then((tags) => {
         res.json(tags)
     })
+})
+
+app.get('/tags/:searchTag', (req, res) => {
+  Tag.find({name: req.params.searchTag})
+  .then((tags) => {
+      res.json(tags)
+  })
 })
 
 
