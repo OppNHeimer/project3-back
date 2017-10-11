@@ -1,7 +1,6 @@
 const express = require('express')
 const parser = require('body-parser')
 let mongoose = require('./db/connection.js')
-// const mongoose = require('./db/connections.js')
 const cors = require('cors')
 const app = express()
 
