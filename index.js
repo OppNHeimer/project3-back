@@ -106,11 +106,14 @@ app.get('/tags/:searchTag', (req, res) => {
   })
 })
 
+app.listen(process.env.PORT || 4000, function () {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
-app.listen(4000, () => {
-    console.log('app listening on port 4000')
-})
-// )
+// app.listen(4000, () => {
+//     console.log('app listening on port 4000')
+// })
+// // )
 // app.listen(4000, () => {
 //     console.log('app listening on port 4000')
 // })
