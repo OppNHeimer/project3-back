@@ -1,30 +1,18 @@
 const mongoose = require('mongoose')
-var Schema = mongoose.Schema
-var ObjectId = Schema.ObjectId
+const Schema = mongoose.Schema
+const ObjectId = Schema.ObjectId
 
-// db.categories.insert({
-//     _id: "Class",
-//     children: ["Students"]
-// })
-// db.categories.insert({
-//     _id: "Student",
-//     children: ["Posts", "Comments"]
-// })
-// db.categories.insert({
-//     _id: "Posts",
-//     children: ["Comments"]
-// })
+// AS: Changed some formatting, otherwise looks good!
 
 const PostSchema = new Schema({
     name: String,
     title: String,
     content: String,
     tags: Array,
-},
-{
-    timestamps: true
-}
-)
+}, { 
+    timestamps: true 
+})
+
 
 const CommentSchema = new Schema({
     name: String,
@@ -33,11 +21,10 @@ const CommentSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'Post'
     },
-},
-{
+}, {
     timestamps: true
-}
-)
+})
+
 
 const TagSchema = new Schema({
     name: String,
@@ -45,13 +32,12 @@ const TagSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'Post'
     },
-},
-{
+}, {
     timestamps: true
-}
-)
+})
 
-// let uri = 'mongodb://aha:project3@ds041526.mlab.com:41526/aha'
+
+// AS: Put your DB path in a .env file and gitignore! Don't let people mess with your data!!!
 let uri = 'mongodb://localhost/aha'
 
 mongoose.connect(uri, function(err, db) {
@@ -62,9 +48,8 @@ mongoose.connect(uri, function(err, db) {
 })
 
 
-// mongoose.connect('mongodb://localhost/project3-back')
-var Post = mongoose.model('Post', PostSchema)
-var Comment = mongoose.model('Comment', CommentSchema)
-var Tag = mongoose.model('Tag', TagSchema)
+const Post = mongoose.model('Post', PostSchema)
+const Comment = mongoose.model('Comment', CommentSchema)
+const Tag = mongoose.model('Tag', TagSchema)
 
 module.exports = mongoose
